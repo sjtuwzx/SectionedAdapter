@@ -14,6 +14,7 @@
 ```java
 private void buildAdapter() {
     mSectionedListAdapter = new SectionedListAdapter();
+    //添加一个不会被ListView回收复用的header
     UnRecycleSectionHeaderCreator unRecycleSectionHeaderCreator = new UnRecycleSectionHeaderCreator(this);
     addSection(unRecycleSectionHeaderCreator, null);
 
@@ -21,6 +22,7 @@ private void buildAdapter() {
     for (int i = 0; i < 6; i++) {
         itemAdapter.add(String.format("item[%d]", i + 1));
     }
+    //在itemAdapter的指定位置插入多个其他类型的item
     InsertItemAdapter insertItemAdapter = new InsertItemAdapter(itemAdapter);
     insertItemAdapter.addInsertItem(3, new GridInsertItemCreator(this));
     insertItemAdapter.addInsertItem(6, new GridInsertItemCreator(this));
@@ -34,6 +36,7 @@ private void buildAdapter() {
         for (int j = 0; j <= i; j++) {
             adapter.add(String.format("item[%d]", j + 1));
         }
+        //adapter.getCount()大于3时加入展开收起功能
         ItemCollapseAdapter collapseAdapter = new ItemCollapseAdapter(this, adapter);
         collapseAdapter.setup(3, true);
 
@@ -46,7 +49,7 @@ private void buildAdapter() {
         headerSectionCreator.setSectionInfo(sectionInfo);
         mSectionedListAdapter.addSection(sectionInfo);
     }
-} 
+}
 
 private void addSection(SectionedListAdapter.SectionInfo.HeaderCreator headerCreator, BaseAdapter adapter) {
     SectionedListAdapter.SectionInfo sectionInfo = new SectionedListAdapter.SectionInfo.Builder()
