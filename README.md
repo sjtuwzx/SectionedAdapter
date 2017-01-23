@@ -59,3 +59,7 @@ private void addSection(SectionedListAdapter.SectionInfo.HeaderCreator headerCre
     mSectionedListAdapter.addSection(sectionInfo);
 }
 ``` 
+
+通过上述代码构建了一个多类型列表，效果图如下
+
+![image](https://github.com/sjtuwzx/SectionedAdapter/blob/master/sample.png)  
