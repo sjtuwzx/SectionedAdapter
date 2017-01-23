@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void buildAdapter() {
         mSectionedListAdapter = new SectionedListAdapter();
+        //添加一个不会被ListView回收复用的header
         UnRecycleSectionHeaderCreator unRecycleSectionHeaderCreator = new UnRecycleSectionHeaderCreator(this);
         addSection(unRecycleSectionHeaderCreator, null);
 
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < 6; i++) {
             itemAdapter.add(String.format("item[%d]", i + 1));
         }
+        //在itemAdapter的指定位置插入多个其他类型的item
         InsertItemAdapter insertItemAdapter = new InsertItemAdapter(itemAdapter);
         insertItemAdapter.addInsertItem(3, new GridInsertItemCreator(this));
         insertItemAdapter.addInsertItem(6, new GridInsertItemCreator(this));
@@ -50,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
             for (int j = 0; j <= i; j++) {
                 adapter.add(String.format("item[%d]", j + 1));
             }
+            //adapter.getCount()大于3时加入展开收起功能
             ItemCollapseAdapter collapseAdapter = new ItemCollapseAdapter(this, adapter);
             collapseAdapter.setup(3, true);
 
