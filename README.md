@@ -11,13 +11,11 @@
 ###适用方式
 
 可参考sample中的MainActivity
-
-    ```java
-        private void buildAdapter() {
+```java
+    private void buildAdapter() {
         mSectionedListAdapter = new SectionedListAdapter();
         UnRecycleSectionHeaderCreator unRecycleSectionHeaderCreator = new UnRecycleSectionHeaderCreator(this);
         addSection(unRecycleSectionHeaderCreator, null);
-
         ItemsAdapter itemAdapter = new ItemsAdapter(this);
         for (int i = 0; i < 6; i++) {
             itemAdapter.add(String.format("item[%d]", i + 1));
@@ -28,7 +26,6 @@
         //position > adapter.getCount(),不展示
         insertItemAdapter.addInsertItem(9, new GridInsertItemCreator(this));
         addSection(null, insertItemAdapter);
-
         for (int i = 0; i < 10; i++) {
             HeaderSectionCreator headerSectionCreator = new HeaderSectionCreator(this, i + 1);
             ItemsAdapter adapter = new ItemsAdapter(this);
@@ -37,7 +34,6 @@
             }
             ItemCollapseAdapter collapseAdapter = new ItemCollapseAdapter(this, adapter);
             collapseAdapter.setup(3, true);
-
             SectionedListAdapter.SectionInfo sectionInfo = new SectionedListAdapter.SectionInfo.Builder()
                     .setHeaderCreator(headerSectionCreator)
                     .setAdapter(collapseAdapter)
@@ -46,14 +42,17 @@
                     .build();
             headerSectionCreator.setSectionInfo(sectionInfo);
             mSectionedListAdapter.addSection(sectionInfo);
-        }
-    }
-    
+        }   
+    }    
+     ```  
+     
+     
+```java
     private void addSection(SectionedListAdapter.SectionInfo.HeaderCreator headerCreator, BaseAdapter adapter) {
         SectionedListAdapter.SectionInfo sectionInfo = new SectionedListAdapter.SectionInfo.Builder()
                 .setHeaderCreator(headerCreator)
                 .setAdapter(adapter)
                 .build();
         mSectionedListAdapter.addSection(sectionInfo);
-    }
-     ```
+    } 
+    ```       
