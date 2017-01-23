@@ -61,5 +61,6 @@ private void addSection(SectionedListAdapter.SectionInfo.HeaderCreator headerCre
 ``` 
 
 通过上述代码构建了一个多类型列表，效果图如下
-<img src="https://github.com/sjtuwzx/SectionedAdapter/blob/master/sample.png" width="320px" />
+
+<img src="https://github.com/sjtuwzx/SectionedAdapter/blob/master/sample.png" width="320" />
  
