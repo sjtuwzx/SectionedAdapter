@@ -1,6 +1,14 @@
 # SectionedAdapter
 
-多类型item的列表构建方案。对列表进行适当抽象，将各个type的item拆分成一个独立的单一职能的类，实现ListView的模块化
+多类型item的列表构建方案。可用于将各个type的item拆分成一个独立的单一职能的类，实现ListView的模块化
+
+###设计思路
+将列表抽象成多个section，每个section由一个header和一个子adapter组成。在SectionedListAdapter中正确实现各个方法，使从ListView视角看到的是一个普通的多类型adapter。
+
+优点：
+
+* 正确分发convertView,完美支持列表item的复用
+* 自动控制“模块”的显隐,可在页面初始化时通过似配置化代码构建列表的全景图，然后通过数据控制列表的展现
 
 ###适用场景
 
@@ -63,4 +71,7 @@ private void addSection(SectionedListAdapter.SectionInfo.HeaderCreator headerCre
 通过上述代码构建了一个多类型列表，效果图如下
 
 <img src="https://github.com/sjtuwzx/SectionedAdapter/blob/master/sample.png" width="320" />
+
+##参考
+<https://github.com/JimiSmith/PinnedHeaderListView>
  
