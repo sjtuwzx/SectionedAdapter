@@ -70,7 +70,7 @@ public class SectionedListAdapter extends SectionedBaseAdapter {
             headerCreator.registerDataSetObserver(mDataSetObservable);
         }
         BaseAdapter adapter = sectionInfo.mAdapter;
-        if (adapter != null && adapter != SectionInfo.EMPTY_ADAPTER) {
+        if (adapter != null) {
             adapter.registerDataSetObserver(mDataSetObservable);
         }
     }
@@ -81,7 +81,7 @@ public class SectionedListAdapter extends SectionedBaseAdapter {
             headerCreator.unregisterDataSetObserver();
         }
         BaseAdapter adapter = sectionInfo.mAdapter;
-        if (adapter != null && adapter != SectionInfo.EMPTY_ADAPTER) {
+        if (adapter != null) {
             adapter.unregisterDataSetObserver(mDataSetObservable);
         }
     }
@@ -298,35 +298,13 @@ public class SectionedListAdapter extends SectionedBaseAdapter {
 
     public static final class SectionInfo {
 
-        private static final BaseAdapter EMPTY_ADAPTER = new BaseAdapter() {
-            @Override
-            public int getCount() {
-                return 0;
-            }
-
-            @Override
-            public Object getItem(int position) {
-                return null;
-            }
-
-            @Override
-            public long getItemId(int position) {
-                return 0;
-            }
-
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                return null;
-            }
-        };
-
         private BaseAdapter mAdapter;
         private HeaderCreator mHeaderCreator;
         private boolean mShouldPinHeader = false;
         private boolean mIsExpanded = true;
 
         private SectionInfo(Builder b) {
-            mAdapter = b.mAdapter != null ? b.mAdapter : EMPTY_ADAPTER;
+            mAdapter = b.mAdapter;
             mHeaderCreator = b.mHeaderCreator;
             mShouldPinHeader = b.mShouldPinHeader;
             mIsExpanded = b.mIsExpanded;
