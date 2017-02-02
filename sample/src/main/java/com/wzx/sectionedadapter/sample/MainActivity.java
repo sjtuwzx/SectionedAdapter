@@ -2,6 +2,7 @@ package com.wzx.sectionedadapter.sample;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
                     .setIsExpanded(i < 5)
                     .build();
             headerSectionCreator.setSectionInfo(sectionInfo);
+            headerSectionCreator.setOnClickListener(new OnSectionHeaderClickListener(mSectionedListAdapter.getSectionCount()));
             mSectionedListAdapter.addSection(sectionInfo);
         }
     }
@@ -73,5 +75,25 @@ public class MainActivity extends AppCompatActivity {
                 .setAdapter(adapter)
                 .build();
         mSectionedListAdapter.addSection(sectionInfo);
+    }
+
+    private class OnSectionHeaderClickListener implements View.OnClickListener {
+
+        private int mSection;
+
+        private OnSectionHeaderClickListener(int section) {
+            mSection = section;
+        }
+
+        @Override
+        public void onClick(View v) {
+            int position = mSectionedListAdapter.getSectionFirstPosition(mSection);
+            SectionedListAdapter.SectionInfo sectionInfo = mSectionedListAdapter.getSectionInfo(mSection);
+            if (sectionInfo.isExpanded()) {
+                mListView.smoothScrollToPositionFromTop(position, 0, 150);
+            } else if (position <= mListView.getFirstVisiblePosition()){
+                mListView.setSelection(position);
+            }
+        }
     }
 }

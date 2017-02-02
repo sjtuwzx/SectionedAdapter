@@ -19,6 +19,7 @@ public class HeaderSectionCreator extends SectionedListAdapter.SectionInfo.Heade
     private int mIndex;
 
     private SectionedListAdapter.SectionInfo mSectionInfo;
+    private View.OnClickListener mOnClickListener;
 
     public HeaderSectionCreator(Context context, int index) {
         mInflater = LayoutInflater.from(context);
@@ -27,6 +28,10 @@ public class HeaderSectionCreator extends SectionedListAdapter.SectionInfo.Heade
 
     public void setSectionInfo(SectionedListAdapter.SectionInfo sectionInfo) {
         mSectionInfo = sectionInfo;
+    }
+
+    public void setOnClickListener(View.OnClickListener listener) {
+        mOnClickListener = listener;
     }
 
     @Override
@@ -57,5 +62,9 @@ public class HeaderSectionCreator extends SectionedListAdapter.SectionInfo.Heade
     public void onClick(View v) {
         mSectionInfo.setIsExpanded(!mSectionInfo.isExpanded());
         notifyDataSetChanged();
+
+        if (mOnClickListener != null) {
+            mOnClickListener.onClick(v);
+        }
     }
 }
