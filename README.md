@@ -2,7 +2,7 @@
 
 多类型item的列表构建方案。可用于将各个type的item拆分成一个独立的单一职能的类，实现ListView的模块化
 
-###设计思路
+### 设计思路
 将列表抽象成多个section，每个section由一个header和一个子adapter组成。在SectionedListAdapter中正确实现各个方法，使从ListView视角看到的是一个普通的多类型adapter。
 
 优点：
@@ -11,14 +11,14 @@
 * 正确分发convertView，完美支持列表item的复用
 * 可在页面初始化时通过近似配置化代码构建列表的全景图，然后通过数据控制列表的展现，构建以数据为中心的UI框架
 
-###适用场景
+### 适用场景
 
 * 按一定顺序排列的多模组分段列表
 * 二级列表，支持子列表的展开收起
 * 在一个列表的任意指定位置插入其他类型的item
 * 列表超过指定长度需要展开收起
 
-###使用方式
+### 使用方式
 
 可参考sample中的MainActivity
 ```java
@@ -74,6 +74,6 @@ private void addSection(SectionedListAdapter.SectionInfo.HeaderCreator headerCre
 
 <img src="https://github.com/sjtuwzx/SectionedAdapter/blob/master/sample.png" width="320" />
 
-##参考
+## 参考
 <https://github.com/JimiSmith/PinnedHeaderListView>
  
